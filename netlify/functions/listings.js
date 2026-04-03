@@ -1,6 +1,6 @@
 import { getStateSnapshot, json, listDashboard, options, readBody } from './_lib/store.js';
 
-export default async function handler(event) {
+export async function handler(event) {
   if (event.httpMethod === 'OPTIONS') {
     return options();
   }

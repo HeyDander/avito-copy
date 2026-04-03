@@ -51,21 +51,31 @@ function App() {
           fetch('/api/dashboard'),
         ]);
 
+        if (responses.some((response) => !response.ok)) {
+          throw new Error('API временно недоступен');
+        }
+
         const [categoriesData, listingsData, favoritesData, messagesData, dashboardData] =
           await Promise.all(responses.map((response) => response.json()));
 
         startTransition(() => {
-          setCategories(categoriesData.categories);
-          setListings(listingsData.listings);
-          setFavorites(favoritesData.favorites);
-          setConversations(messagesData.conversations);
-          setDashboard(dashboardData.dashboard);
-          setActiveConversationId(messagesData.conversations[0]?.id ?? null);
+          const nextCategories = categoriesData.categories ?? [];
+          const nextListings = listingsData.listings ?? [];
+          const nextFavorites = favoritesData.favorites ?? [];
+          const nextConversations = messagesData.conversations ?? [];
+          const nextDashboard = dashboardData.dashboard ?? { responseRate: 0, topCategories: [] };
+
+          setCategories(nextCategories);
+          setListings(nextListings);
+          setFavorites(nextFavorites);
+          setConversations(nextConversations);
+          setDashboard(nextDashboard);
+          setActiveConversationId(nextConversations[0]?.id ?? null);
         });
       } catch {
         setStatus({
           type: 'error',
-          text: 'Не удалось загрузить данные. Проверьте запуск Netlify Functions.',
+          text: 'Не удалось загрузить данные. Попробуйте обновить страницу через пару секунд.',
         });
       } finally {
         setLoading(false);
