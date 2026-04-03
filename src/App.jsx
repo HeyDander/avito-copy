@@ -171,7 +171,7 @@ function App() {
         <div className="hero__nav">
           <div className="brand">
             <span className="brand__dot" />
-            List.am Next
+            Tunik
           </div>
           <div className="hero__nav-meta">
             <span>Маркетплейс нового поколения</span>
