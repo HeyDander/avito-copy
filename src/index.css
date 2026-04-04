@@ -79,6 +79,14 @@ button {
   margin-bottom: 40px;
 }
 
+.hero__nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -102,6 +110,31 @@ button {
   gap: 12px;
   flex-wrap: wrap;
   color: rgba(248, 250, 252, 0.8);
+}
+
+.lang-switcher {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.lang-switcher__button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(248, 250, 252, 0.78);
+  padding: 8px 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.lang-switcher__button--active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
 }
 
 .hero__nav-meta span,
@@ -541,6 +574,10 @@ button {
 
   .hero__nav {
     gap: 14px;
+  }
+
+  .hero__nav-controls {
+    justify-content: start;
   }
 
   .hero__copy h1 {
